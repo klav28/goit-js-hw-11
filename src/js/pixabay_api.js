@@ -4,6 +4,7 @@ export class PixabayAPI {
     #BASE_URL = 'https://pixabay.com';
     #API_KEY = '10882188-26ad39db776bf4c57afd40242';
     page = 1;
+    per_page = 20;
     query = null;
 
     async fetchPhotos() {
@@ -16,7 +17,7 @@ export class PixabayAPI {
                     orientation: 'horizontal',
                     safesearch: true,
                     page: this.page,
-                    per_page: 20,
+                    per_page: this.per_page,
                 }
                 });
         } catch (error) {

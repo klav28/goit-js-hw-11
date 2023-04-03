@@ -1,8 +1,9 @@
 import { PixabayAPI } from "./pixabay_api";
 import Notiflix from "notiflix";
-import Handlebars from "handlebars";
+import createPhotoGallery from '../templates/image-card.hbs';
 
 const pixabayApi = new PixabayAPI();
+const PER_PAGE = 20;
 
 const elSearchForm = document.querySelector("#search-form");
 const elGallery = document.querySelector(".gallery");
@@ -11,52 +12,43 @@ const elLoadMoreBtn = document.querySelector(".load-more__button");
 const handleFormSubmit = async ev => {
   ev.preventDefault();
 
-  const searchQuery = ev.currentTarget.elements['searchQuery'].value;
+  const searchQuery = ev.currentTarget.elements['searchQuery'].value.trim();
+
+  elGallery.innerHTML = "";
+  
+  if (searchQuery === "") {
+    elSearchForm.reset();
+    return;
+  }
+
   pixabayApi.page = 1;
   pixabayApi.query = searchQuery;
 
   try {
     const { data } = await pixabayApi.fetchPhotos();
 
-console.log(data);
+    console.log(data);
 
     if (!data.total) {
       Notiflix.Notify.failure("Images not found");
+      elSearchForm.reset();
       return;
     }
 
     Notiflix.Notify.success(`Found ${data.totalHits} images`);
 
-    elGallery.innerHTML = renderGalleryImage(data.hits);
-
-    // loadMoreBtnEl.classList.remove('is-hidden');
+    elGallery.innerHTML = createPhotoGallery(data.hits);
+    if (data.totalHits < PER_PAGE) {
+      elLoadMoreBtn.classList.add('is-hidden');
+    }
+    else {
+      elLoadMoreBtn.classList.remove('is-hidden');
+    }
 
   } catch (err) {
     console.log(err);
   }
 };
-
-function renderGalleryImage(images) {
-  return images.reduce ((acc, image) => {
-    return acc + `<li>
-    <img src="${image.webformatURL}" alt="${image.tags}" class="photocard__img" loading="lazy" width="360px"/>
-    <div class="info">
-      <p class="info-item">
-        <b>Likes</b>
-      </p>
-      <p class="info-item">
-        <b>Views</b>
-      </p>
-      <p class="info-item">
-        <b>Comments</b>
-      </p>
-      <p class="info-item">
-        <b>Downloads</b>
-      </p>
-    </div>
-  </li>`
-  }, "");
-}
 
 const handleLoadMoreBtnClick = async () => {
   pixabayApi.page += 1;
@@ -64,19 +56,18 @@ const handleLoadMoreBtnClick = async () => {
   try {
     const { data } = await pixabayApi.fetchPhotos();
 
-    // if (pixabayApi.page === data.total_pages) {
-    //   loadMoreBtnEl.classList.add('is-hidden');
-    // }
+    if (data.hits.length < PER_PAGE) {
+      elLoadMoreBtn.classList.add('is-hidden');
+    }
 
     elGallery.insertAdjacentHTML(
       'beforeend',
-      renderGalleryImage(data.hits)
+      createPhotoGallery(data.hits)
     );
   } catch (err) {
     console.log(err);
   }
 };
-
 
 elSearchForm.addEventListener("submit", handleFormSubmit);
 elLoadMoreBtn.addEventListener("click", handleLoadMoreBtnClick);
