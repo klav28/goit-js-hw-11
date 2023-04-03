@@ -3,7 +3,7 @@ import Notiflix from "notiflix";
 import createPhotoGallery from '../templates/image-card.hbs';
 
 const pixabayApi = new PixabayAPI();
-const PER_PAGE = 20;
+const PER_PAGE = 40;
 
 const elSearchForm = document.querySelector("#search-form");
 const elGallery = document.querySelector(".gallery");
@@ -22,6 +22,7 @@ const handleFormSubmit = async ev => {
   }
 
   pixabayApi.page = 1;
+  pixabayApi.per_page = PER_PAGE;
   pixabayApi.query = searchQuery;
 
   try {

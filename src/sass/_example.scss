@@ -64,15 +64,16 @@
 
 .photocard__img {
   object-fit: cover;
+  object-position: center center;
   height: 240px;
-  
+
   transition: filter var(--t-duration) var(--t-transition);
 
-    &:hover,
-    &:focus {
-        filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.5));
-        cursor: pointer;
-    }  
+  &:hover,
+  &:focus {
+    filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.5));
+    cursor: pointer;
+  }
 }
 
 .is-hidden {
