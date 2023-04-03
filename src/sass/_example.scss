@@ -28,7 +28,9 @@
 }
 
 .header {
-  padding: 30px;
+  position: fixed;
+  width: 100%;
+  padding: 20px;
   background-color: teal;
 }
 
@@ -52,7 +54,9 @@
 
 .gallery {
   display: flex;
-//  justify-content: center;
+  margin: 0 auto;
+  margin-top: 80px;
+  width: 1140px;
   flex-wrap: wrap;
   list-style: none;
   gap: 30px;
