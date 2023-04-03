@@ -38,7 +38,10 @@ const handleFormSubmit = async ev => {
 
     Notiflix.Notify.success(`Found ${data.totalHits} images`);
 
-    elGallery.innerHTML = createPhotoGallery(data.hits);
+    elGallery.innerHTML = createPhotoGallery(data.hits).replaceAll("_640.", "_340.");
+
+
+
     if (data.totalHits < PER_PAGE) {
       elLoadMoreBtn.classList.add('is-hidden');
     }
@@ -63,7 +66,7 @@ const handleLoadMoreBtnClick = async () => {
 
     elGallery.insertAdjacentHTML(
       'beforeend',
-      createPhotoGallery(data.hits)
+      createPhotoGallery(data.hits).replaceAll("_640.", "_340.")
     );
   } catch (err) {
     console.log(err);
