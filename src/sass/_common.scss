@@ -1,6 +1,65 @@
 @import '~node_modules/modern-normalize/modern-normalize.css';
 
+:root {
+  --first-background-color: #ffffff;
+  --second-background-color: #f5f4fa;
+  --color-accent: #2196f3;
+  --color-accent2: #188ce8;
+  --color-primary-dark: #212121;
+  --color-primary-middle: #757575;
+  --color-light: #ffffff;
+
+  --t-transition: cubic-bezier(0.4, 0, 0.2, 1);
+  --t-duration: 250ms;
+}
+
+@mixin font($fw, $fs, $lh, $ls) {
+  font-weight: $fw;
+  font-size: $fs;
+  line-height: $lh;
+  letter-spacing: $ls;
+}
+
+@mixin mobile {
+  @media screen and (min-width: 480px) {
+    @content;
+  }
+}
+
+@mixin tablett {
+  @media screen and (min-width: 750px) {
+    @content;
+  }
+}
+
+@mixin desktop {
+  @media screen and (min-width: 1120px) {
+    @content;
+  }
+}
+
+body {
+  background-color: var(--first-background-color);
+
+  font-family: 'Roboto', sans-serif;
+
+  @include font(400, 14px, null, 0.03em);
+
+  color: var(--color-primary-dark);
+  margin: 0;
+  padding: 0;
+}
+
+h1,
+h2,
+h3,
+p {
+  margin: 0;
+  padding: 0;
+}
+
 ul {
-    padding: 0;
-    margin: 0;
+  list-style: none;
+  padding: 0;
+  margin: 0;
 }
