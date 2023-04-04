@@ -1,32 +1,19 @@
 {{#each this}}
     <li class="gallery__item">
-                <img src="{{webformatURL}}" alt="{{tags}}" class="photocard__img" loading="lazy" width="340px" />
-                <div class="photocard__detail">
-                  <div class="photocard__values">
-                <svg class="photocard__icon" width="10" height="10">
-                  <use href="./images/icons.svg#icon-heart"></use>
-                </svg>
+        <a href="{{largeImageURL}}">
+            <img src="{{webformatURL}}" alt="{{tags}}" class="photocard__img" loading="lazy" width="340px" />
+        </a>
+        <div class="photocard__detail">
+            <p>
+                Likes:
                 <span class="photocard__totals">{{likes}}</span>
-                <svg class="photocard__icon" width="11" height="11">
-                  <use href="./images/icons.svg#icon-eye"></use>
-                </svg>
+                Views:
                 <span class="photocard__totals">{{views}}</span>                
-                <svg class="photocard__icon" width="9" height="9">
-                  <use href="./images/icons.svg#icon-bubble2"></use>
-                </svg>
+                Commnts:
                 <span class="photocard__totals">{{comments}}</span>                
-                <svg class="photocard__icon" width="10" height="10">
-                  <use href="./images/icons.svg#icon-box-add"></use>
-                </svg>
-                <span class="photocard__totals">{{downloads}}</span>                
-              </div>
-              <div class="photocard__sitelink">
-                <a href="{{pageURL}}">
-                  <svg class="photocard__icon" width="10" height="10">
-                    <use href="./images/icons.svg#icon-link"></use>
-                  </svg>
-                </a>
-              </div>
-            </div>
-            </li>
+                Downlds:
+                <span class="photocard__totals">{{downloads}}</span>               
+            </p>
+        </div>
+    </li>
 {{/each}}
