@@ -3,7 +3,7 @@ import Notiflix from "notiflix";
 import createPhotoGallery from '../templates/image-card.hbs';
 import SimpleLightbox from "simplelightbox";
 import "simplelightbox/dist/simple-lightbox.min.css";
-import OnlyScroll from 'only-scrollbar';
+// import OnlyScroll from 'only-scrollbar';
 
 const pixabayApi = new PixabayAPI();
 const PER_PAGE = 40;
@@ -12,7 +12,7 @@ const elSearchForm = document.querySelector("#search-form");
 const elGallery = document.querySelector(".gallery");
 const elLoadMoreBtn = document.querySelector(".load-more__button");
 let lightbox = null;
-let scroll = null;
+// let scroll = null;
 
 
 const handleFormSubmit = async ev => {
@@ -48,7 +48,7 @@ const handleFormSubmit = async ev => {
       lightbox.refresh();
     } else {
       lightbox = new SimpleLightbox('.gallery a', { captions: true, enableKeyboard: true, captionDelay: 250, captionsData: "alt" });
-      scroll = new OnlyScroll(document.querySelector('.gallery'));
+//      scroll = new OnlyScroll(document.querySelector('.gallery'));
     }
 
     if (data.totalHits < PER_PAGE) {
