@@ -4,7 +4,7 @@
   padding: 8px;
   background-color: teal;
   z-index: 2;
-
+  
   @include tablett {
     padding: 12px;
   }
@@ -30,6 +30,7 @@
 
 .container {
   width: 100%;
+  padding: 15px;
 }
 
 .gallery {
