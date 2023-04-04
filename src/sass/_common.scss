@@ -38,6 +38,12 @@
   }
 }
 
+@mixin wide {
+  @media screen and (min-width: 1490px) {
+    @content;
+  }
+}
+
 body {
   background-color: var(--first-background-color);
 
