@@ -46,9 +46,8 @@ const handleFormSubmit = async ev => {
     if (lightbox !== null) {
       lightbox.refresh();
     } else {
-      lightbox = new SimpleLightbox('.gallery a', {captions: true, captionDelay:250, captionsData:"alt"});
+      lightbox = new SimpleLightbox('.gallery a', { captions: true, enableKeyboard: true, captionDelay: 250, captionsData: "alt" });
     }
-
 
     if (data.totalHits < PER_PAGE) {
       elLoadMoreBtn.classList.add('is-hidden');
@@ -56,6 +55,8 @@ const handleFormSubmit = async ev => {
     else {
       elLoadMoreBtn.classList.remove('is-hidden');
     }
+
+
 
   } catch (err) {
     console.log(err);
